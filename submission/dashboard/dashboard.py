@@ -6,8 +6,8 @@ from scipy.stats import pearsonr
 
 sns.set(style='dark')
 
-day_df = pd.read_csv("https://github.com/an4rchy0/ML-DS/blob/main/submission/dashboard/day.csv")
-hour_df = pd.read_csv("https://github.com/an4rchy0/ML-DS/blob/main/submission/dashboard/hour.csv")
+day_df = pd.read_csv("https://github.com/an4rchy0/ML-DS/raw/refs/heads/main/submission/dashboard/day.csv")
+hour_df = pd.read_csv("https://github.com/an4rchy0/ML-DS/raw/refs/heads/main/submission/dashboard/hour.csv")
 
 day_df['dteday'] = pd.to_datetime(day_df['dteday'])
 hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
