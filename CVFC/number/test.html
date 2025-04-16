@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Recognizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Digit Recognizer with TensorFlow.js</h1>
+        <p>Draw a digit (0-9) in the canvas below:</p>
+        
+        <div class="canvas-container">
+            <canvas id="drawing-canvas" width="280" height="280"></canvas>
+            <div class="canvas-buttons">
+                <button id="clear-btn">Clear</button>
+                <button id="predict-btn">Predict</button>
+            </div>
+        </div>
+        
+        <div class="prediction-result">
+            <h2>Prediction Results:</h2>
+            <div id="prediction-output">Draw a digit first</div>
+            <div class="confidence-bars" id="confidence-bars"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
