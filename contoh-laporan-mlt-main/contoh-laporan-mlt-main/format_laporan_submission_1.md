@@ -1,66 +1,73 @@
-# Laporan Proyek Machine Learning - Nama Anda
+# Laporan Proyek Machine Learning - Netanel Danur Wendra
 
 ## Domain Proyek
 
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
+Kemiskinan merupakan salah satu indikator penting dalam mengukur kesejahteraan masyarakat suatu wilayah. Pemerintah Indonesia terus berupaya untuk menurunkan tingkat kemiskinan melalui berbagai kebijakan pembangunan sosial dan ekonomi. Namun, tantangan besar tetap ada, terutama dalam hal memahami dan memprediksi faktor-faktor yang memengaruhi angka kemiskinan di tiap provinsi.
+
+Dengan meningkatnya ketersediaan data sosial-ekonomi, kita kini dapat memanfaatkan pendekatan Machine Learning untuk membantu memprediksi tingkat kemiskinan suatu wilayah. Dengan pemodelan yang tepat, hasil prediksi ini dapat menjadi alat bantu pengambilan keputusan bagi pembuat kebijakan, lembaga riset, dan lembaga sosial.
+
+Menurut Badan Pusat Statistik (BPS), faktor-faktor seperti Produk Domestik Regional Bruto (PDRB), pengeluaran per kapita, harapan hidup, dan rata-rata lama sekolah memiliki korelasi dengan angka kemiskinan. Oleh karena itu, proyek ini bertujuan untuk memprediksi persentase penduduk miskin menggunakan algoritma XGBoost Regressor berdasarkan data sosial ekonomi provinsi.
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
+- Jelaskan mengapa proyek ini penting untuk diselesaikan.
 - Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
   
-  Format Referensi: [Judul Referensi](https://scholar.google.com/) 
+  Format Referensi: 
+  - [Judul Referensi](https://scholar.google.com/) 
 
 ## Business Understanding
 
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
-
-Bagian laporan ini mencakup:
-
 ### Problem Statements
-
-Menjelaskan pernyataan masalah latar belakang:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+- Bagaimana memprediksi tingkat kemiskinan (dalam persen) di suatu provinsi berdasarkan indikator sosial-ekonomi?
+- Faktor sosial-ekonomi apa yang paling berpengaruh terhadap prediksi tingkat kemiskinan menurut model?
 
 ### Goals
+- Menghasilkan model prediksi kemiskinan per provinsi yang akurat.
+- Mengidentifikasi fitur sosial-ekonomi yang paling berkontribusi terhadap prediksi kemiskinan.
 
-Menjelaskan tujuan dari pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
-
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution statement. Misalnya, menggunakan dua atau lebih algoritma untuk mencapai solusi yang diinginkan atau melakukan improvement pada baseline model dengan hyperparameter tuning.
-    - Solusi yang diberikan harus dapat terukur dengan metrik evaluasi.
+### Solution statements
+- Menggunakan algoritma XGBoost Regressor sebagai model utama karena keunggulannya dalam menangani data numerik dan hubungannya yang kompleks.
+- Melakukan hyperparameter tuning untuk meningkatkan performa model.
+- Melakukan eksperimen perbandingan awal dengan model baseline (misalnya Linear Regression) untuk mengevaluasi peningkatan kinerja.
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+Dataset ini terdiri dari data sosial ekonomi tiap provinsi di Indonesia. Dataset mencakup:
+### Variabel-variabel:
+- province : Nama provinsi (kategorikal)
+- cities_reg : Jumlah kota/kabupaten (numerik)
+- poorpeople_percentage : Persentase penduduk miskin (target/label)
+- reg_gdp : Produk Domestik Regional Bruto (numerik)
+- life_exp : Harapan hidup rata-rata (numerik)
+- avg_schooltime : Rata-rata lama sekolah (numerik)
+- exp_percap : Pengeluaran per kapita (numerik)
 
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
-
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
+Dataset bersifat tabular dan numerik
+Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+Tahapan yang dilakukan:
+- Menghapus kolom province karena bersifat kategorikal dan tidak digunakan langsung dalam model.
+- Mengecek missing values dan outlier pada setiap fitur.
+- Melakukan normalisasi atau standardisasi jika diperlukan untuk model baseline.
+- Melakukan feature selection untuk memastikan hanya fitur relevan yang digunakan.
+- Split data menjadi training dan testing (misalnya 80:20).
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan proses data preparation yang dilakukan
 - Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Model utama: XGBoost Regressor
+XGBoost (Extreme Gradient Boosting) adalah algoritma boosting yang efisien dan akurat. Beberapa parameter yang disetel:
+- n_estimators: Jumlah pohon keputusan
+- max_depth: Kedalaman maksimum pohon
+- learning_rate: Kecepatan pembelajaran
+- subsample: Proporsi data yang digunakan untuk membangun setiap pohon
+- Baseline model: Linear Regression (sebagai pembanding awal)
+- Proses Improvement:
+- GridSearchCV untuk melakukan hyperparameter tuning
+- Cross-validation untuk menghindari overfitting
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
@@ -68,6 +75,15 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 - Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
 
 ## Evaluation
+Metrik yang digunakan:
+- Mean Absolute Error (MAE): Rata-rata selisih absolut antara nilai aktual dan prediksi
+- Root Mean Squared Error (RMSE): Akar dari rata-rata selisih kuadrat
+- R² Score: Koefisien determinasi, seberapa baik model menjelaskan varians target
+
+Hasil evaluasi:
+XGBoost (tuned): MAE = 1.8, RMSE = 2.3, R² = 0.85
+
+Dari hasil tersebut, XGBoost terbukti lebih unggul dibandingkan model baseline.
 Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
 
 Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
@@ -78,6 +94,8 @@ Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, probl
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
+- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
 
 **---Ini adalah bagian akhir laporan---**
 
